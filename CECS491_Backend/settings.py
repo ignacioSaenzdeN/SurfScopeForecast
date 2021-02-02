@@ -73,13 +73,19 @@ WSGI_APPLICATION = 'CECS491_Backend.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'djongo',
+        'NAME': 'db-name',
+        'HOST': 'mongodb+srv://admin:Surfscopeforecast1@cluster0.8uhns.mongodb.net/test?authSource=admin&replicaSet=atlas-11esft-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
