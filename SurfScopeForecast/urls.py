@@ -7,5 +7,6 @@ urlpatterns = [
     path('forum/', views.forum, name ='SSF-forum'),
     path('maps/', views.maps, name ='SSF-maps'),
     path('profile/', views.profile, name ='SSF-profile'),
+    # path('test', views.temp, name = 'temp'),
 
 ]
