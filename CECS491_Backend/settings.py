@@ -9,12 +9,11 @@ https://docs.djangoproject.com/en/3.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
@@ -27,7 +26,6 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
-
 # Application definition
 
 INSTALLED_APPS = [
@@ -37,7 +35,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'SurfScopeForecast',
+    'rest_framework',
+    'corsheaders',
 ]
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -47,7 +49,16 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
 ]
+
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'CECS491_Backend.urls'
 
@@ -83,7 +94,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': 'db-name',
-        'HOST': 'mongodb+srv://admin:Surfscopeforecast1@cluster0.8uhns.mongodb.net/test?authSource=admin&replicaSet=atlas-11esft-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true',
+        'HOST': 'mongodb+srv://admin:Surfscopeforecast1@cluster0.8uhns.mongodb.net/test?authSource=admin&replicaSet=atlas-11esft-shard-0&readPreference=primary&appname=MongoDB%20Compass&ssl=true',
+        # 'HOST': 'mongodb+srv://admin:Surfscopeforecast1@cluster0.8uhns.mongodb.net/test?authSource=admin&replicaSet=atlas-11esft-shard-0&readPreference=primary&appname=MongoDB%20Compass%20Community&ssl=true',
     }
 }
 
