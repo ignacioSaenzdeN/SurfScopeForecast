@@ -8,3 +8,10 @@ class Blackbox(models.Model):
     name = models.CharField(max_length=30)
     detail = models.CharField(max_length=500)
     newfield = models.CharField(max_length=500, default='some string')
+
+class SurfingInfo(models.Model):
+	ID = models.TextField()
+	secretList = models.TextField()
+	fantasyLeague = models.TextField()
+	alerts = models.TextField()
+	
