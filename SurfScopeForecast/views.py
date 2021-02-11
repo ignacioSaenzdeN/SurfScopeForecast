@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from rest_framework.views import APIView
 from . models import *
 from rest_framework.response import Response
 from . serializer import *
 from rest_framework import viewsets
 from rest_framework.permissions import IsAuthenticated
-
+from django.core.serializers import serialize
 # Create your views here.
 
 def home(request):
@@ -58,3 +58,10 @@ class SurfingInfoView(APIView):
 		if serializer.is_valid(raise_exception=True):
 			serializer.save()
 			return Response(serializer.data)
+
+	
+def getSingle(request,temp):
+	serializer= SurfingInfoSerializer
+	data = SurfingInfo.objects.filter(ID=temp).values()
+	print(data)
+	return JsonResponse(data[0])
