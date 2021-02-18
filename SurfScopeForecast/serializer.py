@@ -7,4 +7,9 @@ class ReactSerializer(serializers.ModelSerializer):
         model = Blackbox
         fields = ['name', 'detail', 'newfield']
 
+class SurfingInfoSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = SurfingInfo
+        fields = ['id','ID', 'secretList', 'fantasyLeague', 'alerts']
+
 
