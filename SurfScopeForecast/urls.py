@@ -14,5 +14,5 @@ urlpatterns = [
     path('profile/', views.profile, name='SSF-profile'),
     path('wel/', ReactView.as_view(), name="something"),
     path('surfingInfo/', SurfingInfoView.as_view(), name="something"),
-    path('getSingle/<str:temp>', SurfingInfoView.getSingle, name="getInfo"),
+    path('getSingle/', SurfingInfoView.getSingle, name="getInfo"),
 ]
