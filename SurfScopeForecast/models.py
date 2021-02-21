@@ -12,6 +12,13 @@ class Blackbox(models.Model):
 
 class SurfingInfo(models.Model):
     ID = models.TextField(unique=True)
-    secretList = models.TextField(blank=True)
+    #secretList = models.TextField(blank=True)
+    secretList = models.JSONField(default="{}")
     fantasyLeague = models.TextField(blank=True)
     alerts = models.TextField(blank=True)
+
+# class Example(models.Model):
+#     # Default has to be immutable otherwise it will be passed by reference
+#     # and all data created in the same session all will have the same reference
+#     # must pass string
+#     data = models.JSONField()

@@ -64,7 +64,6 @@ class SurfingInfoView(APIView):
     def getSingle(request):
         serializer = SurfingInfoSerializer
         an_id = request.GET.get('u_id', '')
-        print(an_id)
         data = SurfingInfo.objects.filter(ID=an_id).values()
         print(data)
         return JsonResponse(data[0])
