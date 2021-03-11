@@ -64,8 +64,6 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
         content = validated_data['content']
         creator = validated_data['creator']
 
-        print(validated_data)
-
         # Get forum object
         try:
             forum = Forum.objects.get(slug=forum_slug)
@@ -73,17 +71,14 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 'Forum does not exist, please enter correct forum slug')
 
-        creator = SurfingInfo.objects.get(ID='auth0|603541f9e32f8300114700fa')
+        creator = SurfingInfo.objects.get(ID=creator)
+
         # Get the requesting user
         user = creator
         if user == "":
             user = None
-        # request = self.context.get("request")
-        # if request and hasattr(request, "user"):
-        #     user = request.user
-        # else:
-        #     raise serializers.ValidationError(
-        #         'Must be authenticated to create thread')
+            raise serializers.ValidationError(
+                'Must be authenticated to create thread')
 
         # Create the thread
         thread = Thread(
