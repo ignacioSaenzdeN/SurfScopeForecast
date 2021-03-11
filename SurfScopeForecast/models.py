@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
+from jsonfield import JSONField
 from django.db import models
-from django.contrib.auth import get_user_model
 # Create your models here.
 
 
@@ -12,8 +12,7 @@ class Blackbox(models.Model):
 
 class SurfingInfo(models.Model):
     ID = models.TextField(unique=True)
-    #secretList = models.TextField(blank=True)
-    secretList = models.JSONField(default="{}")
+    secretList = JSONField(default="{}")
     fantasyLeague = models.TextField(blank=True)
     alerts = models.TextField(blank=True)
 
