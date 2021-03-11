@@ -13,6 +13,8 @@ urlpatterns = [
     path('maps/', views.maps, name='SSF-maps'),
     path('profile/', views.profile, name='SSF-profile'),
     path('wel/', ReactView.as_view(), name="something"),
-    path('surfingInfo/', SurfingInfoView.as_view(), name="something"),
-    path('getSingle/', SurfingInfoView.getSingle, name="getInfo"),
+    path('surfingInfo/<u_id>/',
+         views.user_surfinginfo, name="something"),
+    #path('getSingle/', SurfingInfoView.getSingle, name="getInfo"),
+    #path('putSss/', SurfingInfoView.putSss, name="sss"),
 ]

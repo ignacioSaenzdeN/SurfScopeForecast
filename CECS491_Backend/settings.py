@@ -26,8 +26,14 @@ DEBUG = True
 
 ALLOWED_HOSTS = ["*"]
 
-# Application definition
+CORS_ORIGIN_ALLOW_ALL = True
 
+# CORS_ORIGIN_REGEX_WHITELIST = [
+#     'http://localhost:8000',
+# ]
+# CORS_ALLOW_CREDENTIALS = True
+
+# Application definition
 INSTALLED_APPS = [
     'SurfScopeForecast.apps.SurfscopeforecastConfig',
     'django.contrib.admin',
@@ -38,18 +44,23 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    # local components
+    'accounts',
+    'forums',
+    'threads',
+    'posts',
 ]
 
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
 ]
 
 REST_FRAMEWORK = {
@@ -58,7 +69,6 @@ REST_FRAMEWORK = {
     ]
 }
 
-CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'CECS491_Backend.urls'
 
