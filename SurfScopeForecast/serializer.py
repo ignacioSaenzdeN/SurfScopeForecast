@@ -11,4 +11,5 @@ class ReactSerializer(serializers.ModelSerializer):
 class SurfingInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = SurfingInfo
-        fields = ['id', 'ID', 'secretList', 'fantasyLeague', 'alerts']
+        fields = ['id', 'ID', 'username',
+                  'secretList', 'fantasyLeague', 'alerts']

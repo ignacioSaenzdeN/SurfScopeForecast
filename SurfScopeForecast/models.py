@@ -12,6 +12,7 @@ class Blackbox(models.Model):
 
 class SurfingInfo(models.Model):
     ID = models.TextField(unique=True)
+    username = models.TextField()
     secretList = JSONField(default="{}")
     fantasyLeague = models.TextField(blank=True)
     alerts = models.TextField(blank=True)

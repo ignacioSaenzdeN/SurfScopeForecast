@@ -52,13 +52,13 @@ class ReactView(APIView):
             return Response(serializer.data)
 
 
-# class SurfingInfoView(APIView):
-#     serializer_class = SurfingInfoSerializer
+class SurfingInfoView(APIView):
+    serializer_class = SurfingInfoSerializer
 
-#     def get(self, request):
-#         detail = [{'ID': detail.ID, 'secretList': detail.secretList, 'fantasyLeague': detail.fantasyLeague,
-#                    'alerts': detail.alerts} for detail in SurfingInfo.objects.all()]
-#         return Response(detail)
+    # def get(self, request):
+    #     detail = [{'ID': detail.ID, 'secretList': detail.secretList, 'fantasyLeague': detail.fantasyLeague,
+    #                'alerts': detail.alerts} for detail in SurfingInfo.objects.all()]
+    #     return Response(detail)
 
 #     def post(self, request):
 #         serializer = SurfingInfoSerializer(data=request.data)
@@ -75,12 +75,13 @@ class ReactView(APIView):
 #             return Response(serializer.data)
 #         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-#     def getSingle(request):
-#         serializer = SurfingInfoSerializer
-#         an_id = request.GET.get('u_id', '')
-#         data = SurfingInfo.objects.filter(ID=an_id).values()
-#         print(data)
-#         return JsonResponse(data[0])
+    # def getSingle(request):
+    #     serializer = SurfingInfoSerializer
+    #     an_id = request.GET.get('u_id', '')
+    #     data = SurfingInfo.objects.filter(ID=an_id).values()
+    #     print(data)
+    #     return JsonResponse(data[0])
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_surfinginfo(request, u_id):

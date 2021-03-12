@@ -48,7 +48,7 @@ INSTALLED_APPS = [
     'accounts',
     'forums',
     'threads',
-    'posts',
+    'posts'
 ]
 
 
