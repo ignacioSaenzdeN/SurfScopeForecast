@@ -184,3 +184,10 @@ class ThreadDetailSerializer(serializers.ModelSerializer):
 
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
+
+
+class QueryThreadsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Thread
+        fields = ['id', 'name', 'forum', 'pinned',
+                  'content', 'creator', 'created_at', 'last_activity']

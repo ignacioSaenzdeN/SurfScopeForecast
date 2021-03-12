@@ -52,35 +52,43 @@ class ReactView(APIView):
             return Response(serializer.data)
 
 
-# class SurfingInfoView(APIView):
-#     serializer_class = SurfingInfoSerializer
+class SurfingInfoView(APIView):
+    serializer_class = SurfingInfoSerializer
 
-#     def get(self, request):
-#         detail = [{'ID': detail.ID, 'secretList': detail.secretList, 'fantasyLeague': detail.fantasyLeague,
-#                    'alerts': detail.alerts} for detail in SurfingInfo.objects.all()]
-#         return Response(detail)
+    # def get(self, request):
+    #     detail = [{'ID': detail.ID, 'secretList': detail.secretList, 'fantasyLeague': detail.fantasyLeague,
+    #                'alerts': detail.alerts} for detail in SurfingInfo.objects.all()]
+    #     return Response(detail)
 
-#     def post(self, request):
-#         serializer = SurfingInfoSerializer(data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#             return Response(serializer.data)
+    # def put(self, request):
+    #     secretsurfspot_data = request.data
+    #     print(secretsurfspot_data)
+    #     secretsurfspot_user = SurfingInfo.objects.filter(
+    #         ID=u_id).update(secretList=secretsurfspot_data)
+    #     return JsonResponse(secretsurfspot_user, safe=False)
 
-#     def putSss(self, request):
-#         an_id = request.GET.get('u_id', '')
-#         data = SurfingInfo.objects.filter(ID=an_id).values()[0]
-#         serializer = SurfingInfoSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request):
+        serializer = SurfingInfoSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
 
-#     def getSingle(request):
-#         serializer = SurfingInfoSerializer
-#         an_id = request.GET.get('u_id', '')
-#         data = SurfingInfo.objects.filter(ID=an_id).values()
-#         print(data)
-#         return JsonResponse(data[0])
+    # def putSss(self, request):
+    #     an_id = request.GET.get('u_id', '')
+    #     data = SurfingInfo.objects.filter(ID=an_id).values()[0]
+    #     serializer = SurfingInfoSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+    # def getSingle(request):
+    #     serializer = SurfingInfoSerializer
+    #     an_id = request.GET.get('u_id', '')
+    #     data = SurfingInfo.objects.filter(ID=an_id).values()
+    #     print(data)
+    #     return JsonResponse(data[0])
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_surfinginfo(request, u_id):
@@ -100,3 +108,9 @@ def user_surfinginfo(request, u_id):
         secretsurfspot_user = SurfingInfo.objects.filter(
             ID=u_id).update(secretList=secretsurfspot_data)
         return JsonResponse(secretsurfspot_user, safe=False)
+
+    # elif request.method == 'POST':
+    #     serializer = SurfingInfoSerializer(data=request.data)
+    #     if serializer.is_valid(raise_exception=True):
+    #         serializer.save()
+    #     return Response(serializer.data)

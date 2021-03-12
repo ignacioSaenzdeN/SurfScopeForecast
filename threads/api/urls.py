@@ -7,7 +7,8 @@ from .views import (
     ThreadCreateAPIView,
     ThreadDetailAPIView,
     ThreadUpdateAPIView,
-    ThreadDeleteAPIView
+    ThreadDeleteAPIView,
+    QueryThreadsApiView
 )
 
 urlpatterns = [
@@ -16,4 +17,6 @@ urlpatterns = [
     path('<int:pk>/', ThreadDetailAPIView.as_view(), name='thread-detail'),
     path('<int:pk>/edit/', ThreadUpdateAPIView.as_view(), name='thread-update'),
     path('<int:pk>/deleter/', ThreadDeleteAPIView.as_view(), name='thread-delete'),
+    path('getThreads/<int:forum_id>/',
+         QueryThreadsApiView.get, name="get-threads"),
 ]
