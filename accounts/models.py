@@ -26,21 +26,21 @@ class ForumUser(models.Model):
 # automatically create a token for each new user
 
 
-@receiver(post_save, sender=SurfingInfo)
-def create_auth_token(sender, instance=None, created=False, **kwargs):
-    if created:
-        Token.objects.create(user=instance)
+# @receiver(post_save, sender=SurfingInfo)
+# def create_auth_token(sender, instance=None, created=False, **kwargs):
+#     if created:
+#         Token.objects.create(user=instance)
 
 # New superuser profile
 
 
-@receiver(post_save, sender=SurfingInfo)
-def create_superuser_profile(sender, instance, created, **kwargs):
-    if created and instance.is_superuser:
-        ForumUser.objects.create(
-            user=instance,
-            bio='I am the admin and I manage this website',
-            avatar='http://res.cloudinary.com/rengorum/image/upload/v1525768360/admin.png',
-            name='Administrator',
-            status='Administrator'
-        )
+# @receiver(post_save, sender=SurfingInfo)
+# def create_superuser_profile(sender, instance, created, **kwargs):
+#     if created and instance.is_superuser:
+#         ForumUser.objects.create(
+#             user=instance,
+#             bio='I am the admin and I manage this website',
+#             avatar='http://res.cloudinary.com/rengorum/image/upload/v1525768360/admin.png',
+#             name='Administrator',
+#             status='Administrator'
+#         )

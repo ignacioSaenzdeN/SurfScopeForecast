@@ -77,8 +77,8 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
         user = creator
         if user == "":
             user = None
-        raise serializers.ValidationError(
-            'Must be authenticated to create thread')
+            raise serializers.ValidationError(
+                'Must be authenticated to create thread')
 
         # Create the thread
         thread = Thread(

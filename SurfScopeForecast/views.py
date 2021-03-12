@@ -60,20 +60,27 @@ class SurfingInfoView(APIView):
     #                'alerts': detail.alerts} for detail in SurfingInfo.objects.all()]
     #     return Response(detail)
 
-#     def post(self, request):
-#         serializer = SurfingInfoSerializer(data=request.data)
-#         if serializer.is_valid(raise_exception=True):
-#             serializer.save()
-#             return Response(serializer.data)
+    # def put(self, request):
+    #     secretsurfspot_data = request.data
+    #     print(secretsurfspot_data)
+    #     secretsurfspot_user = SurfingInfo.objects.filter(
+    #         ID=u_id).update(secretList=secretsurfspot_data)
+    #     return JsonResponse(secretsurfspot_user, safe=False)
 
-#     def putSss(self, request):
-#         an_id = request.GET.get('u_id', '')
-#         data = SurfingInfo.objects.filter(ID=an_id).values()[0]
-#         serializer = SurfingInfoSerializer(data=request.data)
-#         if serializer.is_valid():
-#             serializer.save()
-#             return Response(serializer.data)
-#         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+    def post(self, request):
+        serializer = SurfingInfoSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+    # def putSss(self, request):
+    #     an_id = request.GET.get('u_id', '')
+    #     data = SurfingInfo.objects.filter(ID=an_id).values()[0]
+    #     serializer = SurfingInfoSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
     # def getSingle(request):
     #     serializer = SurfingInfoSerializer
@@ -101,3 +108,9 @@ def user_surfinginfo(request, u_id):
         secretsurfspot_user = SurfingInfo.objects.filter(
             ID=u_id).update(secretList=secretsurfspot_data)
         return JsonResponse(secretsurfspot_user, safe=False)
+
+    # elif request.method == 'POST':
+    #     serializer = SurfingInfoSerializer(data=request.data)
+    #     if serializer.is_valid(raise_exception=True):
+    #         serializer.save()
+    #     return Response(serializer.data)
