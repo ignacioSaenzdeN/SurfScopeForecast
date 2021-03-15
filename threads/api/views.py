@@ -68,5 +68,4 @@ class QueryThreadsApiView(APIView):
         data = Thread.objects.filter(forum_id=forum_id).values()
         for i in range(len(data)):
             tempDict[i] = data[i]
-        print(tempDict)
         return JsonResponse(tempDict)

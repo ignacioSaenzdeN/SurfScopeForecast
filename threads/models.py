@@ -14,6 +14,7 @@ class Thread(models.Model):
     content = models.TextField()
     creator = models.ForeignKey(
         SurfingInfo, on_delete=models.CASCADE, related_name='threads')
+    username = models.TextField(default="")
     created_at = models.DateTimeField(auto_now_add=True)
     last_activity = models.DateTimeField(default=now)
 

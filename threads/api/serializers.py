@@ -79,13 +79,15 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
             user = None
             raise serializers.ValidationError(
                 'Must be authenticated to create thread')
-
+        username = SurfingInfo.objects.get(ID=user.ID).username
+        # Get username
         # Create the thread
         thread = Thread(
             name=name,
             forum=forum,
             content=content,
-            creator=user
+            creator=user,
+            username=username
         )
         thread.save()
         return thread
