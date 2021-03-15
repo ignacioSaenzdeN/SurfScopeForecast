@@ -22,7 +22,8 @@ class ForumListSerializer(serializers.ModelSerializer):
             'description',
             'posts_count',
             'threads_count',
-            'last_activity'
+            'last_activity',
+            'id'
         )
         read_only_fields = ('slug',)
 
