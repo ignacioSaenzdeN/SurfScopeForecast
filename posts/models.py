@@ -11,6 +11,7 @@ class Post(models.Model):
         Thread, on_delete=models.CASCADE, related_name='posts')
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(null=True)
+    username = models.TextField(default="")
     creator = models.ForeignKey(
         SurfingInfo, on_delete=models.CASCADE, related_name='posts')
 

@@ -20,5 +20,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('SurfScopeForecast.urls')),
     path('api/forum/', include('forums.api.urls')),
-    path('api/thread/', include('threads.api.urls'))
+    path('api/thread/', include('threads.api.urls')),
+    path('api/post/', include('posts.api.urls'))
 ]
