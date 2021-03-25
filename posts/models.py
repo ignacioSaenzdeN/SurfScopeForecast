@@ -20,7 +20,7 @@ class Post(models.Model):
         ordering = ['created_at']
 
     def __str__(self):
-        truncated_content = Truncator(self.content)
+        truncated_Content = Truncator(self.content)
         # TOO delete print statement
-        print(truncated_Content.chars(30))
+
         return truncated_Content.chars(30)
