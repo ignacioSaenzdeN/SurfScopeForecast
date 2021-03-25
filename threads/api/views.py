@@ -1,4 +1,5 @@
 from threads.models import Thread
+from posts.models import Post
 from rest_framework import generics, views
 from rest_framework.views import APIView
 from rest_framework.permissions import (
@@ -47,6 +48,12 @@ class ThreadDeleteAPIView(generics.DestroyAPIView):
     serializer_class = ThreadDeleteSerializer
     #permission_classes = [IsOwnerOrAdminOrReadOnly]
     permission_classes = [AllowAny]
+
+    def delete(self, request, pk, format=None):
+        posts = Post.objects.filter(thread_id=pk)
+        posts.delete()
+        thread = Thread.objects.filter(id=pk).delete()
+        return Response(status=HTTP_200_OK)
 
 
 class ThreadUpdateAPIView(generics.UpdateAPIView):

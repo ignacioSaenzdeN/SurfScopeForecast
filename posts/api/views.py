@@ -49,27 +49,36 @@ class PostDeleteAPIView(generics.DestroyAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDeleteSerializer
     # permission_classes = [IsOwnerOrAdminOrReadOnly]
+    permission_classes = [AllowAny]
 
     def delete(self, request, pk, format=None):
-        try:
-            post = Post.objects.get(pk=pk)
-            thread = post.thread
-            post.delete()
+        # try:
+        post = Post.objects.get(pk=pk)
 
-            # since we deleted a post, we now check the latest post
-            latest_post = Post.objects.filter(
-                thread=thread).order_by('-created_at').first()
+        thread_id = post.thread_id
 
-            # update the deleted post's thread last_activity
-            if latest_post is None:
-                thread.last_activity = thread.created_at
-            else:
-                thread.last_activity = latest_post.created_at
-            thread.save()
-            return Response(status=HTTP_200_OK)
+        post.delete()
 
-        except:
-            return Response(status=HTTP_400_BAD_REQUEST)
+        # # since we deleted a post, we now check the latest post
+        # latest_post = Post.objects.filter(
+        #     thread=thread).order_by('-created_at').first()
+
+        # update the deleted post's thread last_activity
+        # if latest_post is None:
+        #     thread.last_activity = thread.created_at
+        # else:
+        #     thread.last_activity = latest_post.created_at
+        # thread.save()
+        # Response(status=HTTP_200_OK)
+        tempDict = {}
+        data = Post.objects.filter(thread_id=thread_id).values()
+        for i in range(len(data)):
+            tempDict[i] = data[i]
+
+        return JsonResponse(tempDict)
+
+        # except:
+        #     return Response(status=HTTP_400_BAD_REQUEST)
 
 
 class PostUpdateAPIView(generics.UpdateAPIView):
