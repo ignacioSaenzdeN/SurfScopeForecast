@@ -68,11 +68,21 @@ class QueryThreadsApiView(APIView):
     serializer_class = QueryThreadsSerializer
 
     def get(request, forum_id):
-        print('forum_id')
-        print(forum_id)
-        #forumid_ = request.GET.get('forum_id', '')
         tempDict = {}
         data = Thread.objects.filter(forum_id=forum_id).values()
         for i in range(len(data)):
             tempDict[i] = data[i]
         return JsonResponse(tempDict)
+
+
+class QueryThreadMetaDataView(APIView):
+    def get(request, thread_id):
+        tempDict = {}
+        postQuery = Post.objects.filter(thread_id=thread_id).values()
+        if len(postQuery) != 0:
+            latestPost = {'data': postQuery[len(postQuery) - 1]}
+        else:
+            latestPost = {'data': "Nothing has been posted in this topic."}
+
+        print(latestPost)
+        return JsonResponse(latestPost)
