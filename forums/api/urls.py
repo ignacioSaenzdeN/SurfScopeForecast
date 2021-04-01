@@ -8,6 +8,7 @@ from .views import (
     ForumListAPIView,
     ForumDeleteAPIView,
     ForumUpdateAPIView,
+    QueryForumMetadata,
 )
 
 urlpatterns = [
@@ -16,4 +17,6 @@ urlpatterns = [
     path('<slug:slug>/', ForumDetailAPIView.as_view(), name='forum-detail'),
     path('<slug:slug>/edit/', ForumUpdateAPIView.as_view(), name='forum-update'),
     path('<slug:slug>/delete/', ForumDeleteAPIView.as_view(), name='forum-delete'),
+    path('getMetadata/<int:forum_id>/',
+         QueryForumMetadata.get, name="get-metadata"),
 ]

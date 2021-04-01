@@ -8,7 +8,8 @@ from .views import (
     ThreadDetailAPIView,
     ThreadUpdateAPIView,
     ThreadDeleteAPIView,
-    QueryThreadsApiView
+    QueryThreadsApiView,
+    QueryThreadMetaDataView,
 )
 
 urlpatterns = [
@@ -19,4 +20,6 @@ urlpatterns = [
     path('<int:pk>/delete/', ThreadDeleteAPIView.as_view(), name='thread-delete'),
     path('getThreads/<int:forum_id>/',
          QueryThreadsApiView.get, name="get-threads"),
+    path('getThreadMetaData/<int:thread_id>/',
+         QueryThreadMetaDataView.get, name="get-threadmetadata"),
 ]
