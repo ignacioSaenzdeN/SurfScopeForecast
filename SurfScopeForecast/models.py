@@ -16,6 +16,32 @@ class SurfingInfo(models.Model):
     secretList = JSONField(default="{}")
     fantasyLeague = models.TextField(blank=True)
     alerts = models.TextField(blank=True)
+    boardSuggestion = models.TextField(blank=True)
+    wetSuitSuggestion = models.TextField(blank=True)
+
+
+class Boardshorts(models.Model):
+    itemType = models.TextField(default="")
+    imageUrl = models.TextField(default="")
+    productUrl = models.TextField(default="")
+
+
+class Wetsuits(models.Model):
+    itemType = models.TextField(default="")
+    imageUrl = models.TextField(default="")
+    productUrl = models.TextField(default="")
+    legs = models.TextField(default="")
+    thickness = models.TextField(default="")
+    zipperType = models.TextField(default="")
+
+
+class Surfboards(models.Model):
+    itemType = models.TextField(default="")
+    imageUrl = models.TextField(default="")
+    productUrl = models.TextField(default="")
+    dimensions = models.TextField(default="")
+    volume = models.TextField(default="")
+
 
 # class Example(models.Model):
 #     # Default has to be immutable otherwise it will be passed by reference

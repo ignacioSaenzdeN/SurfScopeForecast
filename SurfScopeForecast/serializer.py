@@ -13,3 +13,24 @@ class SurfingInfoSerializer(serializers.ModelSerializer):
         model = SurfingInfo
         fields = ['id', 'ID', 'username',
                   'secretList', 'fantasyLeague', 'alerts']
+
+
+class SurfboardsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Surfboards
+        fields = ['id', 'itemType', 'dimensions',
+                  'volume', 'imageUrl', 'productUrl']
+
+
+class WetsuitsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Wetsuits
+        fields = ['id', 'itemType', 'sleeves',
+                  'legs', 'thickness', 'zipperType']
+
+
+class BoardShortsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Boardshorts
+        fields = ['id', 'itemType', 'imageUrl',
+                  'productUrl']
