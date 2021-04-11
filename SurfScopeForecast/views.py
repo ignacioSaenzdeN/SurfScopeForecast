@@ -114,3 +114,18 @@ def user_surfinginfo(request, u_id):
     #     if serializer.is_valid(raise_exception=True):
     #         serializer.save()
     #     return Response(serializer.data)
+
+
+class Surfboards(APIView):
+    serializer_class = SurfboardsSerializer
+
+    def post(self, request):
+        serializer = SurfboardsSerializer(data=request.data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+    def get(self, request):
+        print(request.GET.get('state', None))
+        print("hello")
+        return Response("response")

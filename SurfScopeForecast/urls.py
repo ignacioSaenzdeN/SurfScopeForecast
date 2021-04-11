@@ -19,4 +19,7 @@ urlpatterns = [
          SurfingInfoView.as_view(), name="something"),
     #path('getSingle/', SurfingInfoView.getSingle, name="getInfo"),
     #path('putSss/', SurfingInfoView.putSss, name="sss"),
+    path('surfboards/', Surfboards.as_view(), name="surfboards")
+
+
 ]
