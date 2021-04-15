@@ -34,3 +34,17 @@ class BoardShortsSerializer(serializers.ModelSerializer):
         model = Boardshorts
         fields = ['id', 'itemType', 'imageUrl',
                   'productUrl']
+
+
+class UserWetsuitSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserWetsuit
+        fields = ['user', 'gender', 'size',
+                  'waterTemp', 'coldSensitivy', 'zipperType', 'imageUrl', 'productUrl']
+
+
+class UserSurfboardSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = UserSurfboard
+        fields = ['user', 'weight', 'height',
+                  'size', 'level', 'waveSize', 'imageUrl', 'productUrl']

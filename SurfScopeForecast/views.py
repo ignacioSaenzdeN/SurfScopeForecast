@@ -126,6 +126,74 @@ class Surfboards(APIView):
             return Response(serializer.data)
 
     def get(self, request):
-        print(request.GET.get('state', None))
-        print("hello")
+        boardQuestionData = request.GET.get('state', None)
+        boardType = boardQuestionData.surfBoardSize
+
         return Response("response")
+
+
+class user_wetsuit_post(APIView):
+    serializer_class = UserWetsuitSerializer
+
+    def post(self, request):
+        surfing_info = SurfingInfo.objects.get(
+            ID=request.data['user'])
+        wetsuit_data = {'user': surfing_info.id}
+        serializer = UserWetsuitSerializer(data=wetsuit_data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def user_wetsuit(request, u_id):
+    try:
+        surfing_info_id = SurfingInfo.objects.get(
+            ID=u_id).id
+        UserWetsuit_query = UserWetsuit.objects.get(user_id=surfing_info_id)
+    except UserWetsuit.DoesNotExist:
+        return JsonResponse({'message': 'The user surfing info does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        userwetsuit_serializer = UserWetsuitSerializer(UserWetsuit_query)
+        return JsonResponse(userwetsuit_serializer.data)
+
+    elif request.method == 'PUT':
+        userwetsuit_data = request.data
+        userwetsuit_user = UserWetsuit.objects.filter(
+            user_id=surfing_info_id).update(size=userwetsuit_data['size'], gender=userwetsuit_data['gender'], waterTemp=userwetsuit_data['waterTemp'], coldSensitivy=userwetsuit_data['coldSensitivy'],  zipperType=userwetsuit_data['zipperType'],  productUrl=userwetsuit_data['productUrl'])
+        return JsonResponse(userwetsuit_user, safe=False)
+
+
+class user_surfboard_post(APIView):
+    serializer_class = UserSurfboardSerializer
+
+    def post(self, request):
+        surfing_info = SurfingInfo.objects.get(
+            ID=request.data['user'])
+        surfboard_data = {'user': surfing_info.id}
+        serializer = UserSurfboardSerializer(data=surfboard_data)
+        if serializer.is_valid(raise_exception=True):
+            serializer.save()
+            return Response(serializer.data)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def user_surfboard(request, u_id):
+    try:
+        surfing_info_id = SurfingInfo.objects.get(
+            ID=u_id).id
+        UserSurfboard_query = UserSurfboard.objects.get(
+            user_id=surfing_info_id)
+    except UserSurfBoardSerializer.DoesNotExist:
+        return JsonResponse({'message': 'The user surfing info does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        usersurfboard_serializer = UserSurfboardSerializer(UserSurfboard_query)
+        return JsonResponse(usersurfboard_serializer.data)
+
+    elif request.method == 'PUT':
+        usersurfboard_data = request.data
+        usersurfboard_user = UserSurfboard.objects.filter(
+            user_id=surfing_info_id).update(weight=usersurfboard_data['weight'], height=usersurfboard_data['height'], size=usersurfboard_data['size'], level=usersurfboard_data['level'],  waveSize=usersurfboard_data['waveSize'],  productUrl=userwetsuit_data['productUrl'])
+        return JsonResponse(usersurfboard_user, safe=False)

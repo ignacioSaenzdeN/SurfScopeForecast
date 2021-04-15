@@ -19,7 +19,18 @@ urlpatterns = [
          SurfingInfoView.as_view(), name="something"),
     #path('getSingle/', SurfingInfoView.getSingle, name="getInfo"),
     #path('putSss/', SurfingInfoView.putSss, name="sss"),
-    path('surfboards/', Surfboards.as_view(), name="surfboards")
+    path('surfboards/', Surfboards.as_view(), name="surfboards"),
+    #path('wetsuits/', Wetsuits.as_view(), name="wetsuits")
+    path('userwetsuit/<u_id>/',
+         views.user_wetsuit, name="userwetsuit"),
+    path('userwetsuit/',
+         user_wetsuit_post.as_view(), name="userwetsuit"),
+    path('usersurfboard/<u_id>/',
+         views.user_surfboard, name="usersurfboard"),
+    path('usersurfboard/',
+         user_surfboard_post.as_view(), name="usersurfboard"),
+
+
 
 
 ]

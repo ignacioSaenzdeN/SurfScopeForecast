@@ -43,6 +43,29 @@ class Surfboards(models.Model):
     volume = models.TextField(default="")
 
 
+class UserWetsuit(models.Model):
+    user = models.ForeignKey(
+        SurfingInfo, on_delete=models.CASCADE, related_name='wetsuit')
+    gender = models.TextField(default="")
+    size = models.TextField(default="")
+    waterTemp = models.TextField(default="")
+    coldSensitivy = models.TextField(default="")
+    zipperType = models.TextField(default="")
+    imageUrl = models.TextField(default="")
+    productUrl = models.TextField(default="")
+
+
+class UserSurfboard(models.Model):
+    user = models.ForeignKey(
+        SurfingInfo, on_delete=models.CASCADE, related_name='surfboard')
+    weight = models.TextField(default="")
+    height = models.TextField(default="")
+    size = models.TextField(default="")
+    level = models.TextField(default="")
+    waveSize = models.TextField(default="")
+    imageUrl = models.TextField(default="")
+    productUrl = models.TextField(default="")
+
 # class Example(models.Model):
 #     # Default has to be immutable otherwise it will be passed by reference
 #     # and all data created in the same session all will have the same reference
