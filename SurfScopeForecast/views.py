@@ -195,5 +195,5 @@ def user_surfboard(request, u_id):
     elif request.method == 'PUT':
         usersurfboard_data = request.data
         usersurfboard_user = UserSurfboard.objects.filter(
-            user_id=surfing_info_id).update(weight=usersurfboard_data['weight'], height=usersurfboard_data['height'], size=usersurfboard_data['size'], level=usersurfboard_data['level'],  waveSize=usersurfboard_data['waveSize'],  productUrl=userwetsuit_data['productUrl'])
+            user_id=surfing_info_id).update(weight=usersurfboard_data['weight'], height=usersurfboard_data['height'], size=usersurfboard_data['size'], level=usersurfboard_data['level'],  waveSize=usersurfboard_data['waveSize'],  productUrl=usersurfboard_data['productUrl'])
         return JsonResponse(usersurfboard_user, safe=False)
