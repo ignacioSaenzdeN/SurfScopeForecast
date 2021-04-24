@@ -12,8 +12,6 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 from django.db.models.functions import Concat
 
-# Create your views here.
-
 
 def home(request):
     return HttpResponse('<h1> Include Homepage here </h1>')

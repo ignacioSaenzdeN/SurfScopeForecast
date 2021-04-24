@@ -21,5 +21,6 @@ urlpatterns = [
     path('', include('SurfScopeForecast.urls')),
     path('api/forum/', include('forums.api.urls')),
     path('api/thread/', include('threads.api.urls')),
-    path('api/post/', include('posts.api.urls'))
+    path('api/post/', include('posts.api.urls')),
+    path('api/fantasyleague/', include('fantasyleague.api.urls'))
 ]
