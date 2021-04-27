@@ -12,7 +12,7 @@ class SurfingInfoSerializer(serializers.ModelSerializer):
     class Meta:
         model = SurfingInfo
         fields = ['id', 'ID', 'username',
-                  'secretList', 'fantasyLeague', 'alerts']
+                  'secretList', 'fantasyLeague', 'alerts', 'boardSuggestion', 'wetSuitSuggestion', 'totalTeamScore']
 
 
 class SurfboardsSerializer(serializers.ModelSerializer):
