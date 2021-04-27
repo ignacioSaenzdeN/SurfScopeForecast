@@ -11,6 +11,7 @@ from django.core.serializers import serialize
 from rest_framework.parsers import JSONParser
 from rest_framework import status
 from django.db.models.functions import Concat
+from django.forms.models import model_to_dict
 
 
 def home(request):
@@ -195,3 +196,47 @@ def user_surfboard(request, u_id):
         usersurfboard_user = UserSurfboard.objects.filter(
             user_id=surfing_info_id).update(weight=usersurfboard_data['weight'], height=usersurfboard_data['height'], size=usersurfboard_data['size'], level=usersurfboard_data['level'],  waveSize=usersurfboard_data['waveSize'],  productUrl=usersurfboard_data['productUrl'])
         return JsonResponse(usersurfboard_user, safe=False)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def user_fantasyleague(request, u_id):
+    try:
+        surfinginfo = SurfingInfo.objects.get(ID=u_id)
+    except SurfingInfo.DoesNotExist:
+        return JsonResponse({'message': 'The user surfing info does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        print(SurfingInfoSerializer(surfinginfo))
+        surfinginfo_serializer = SurfingInfoSerializer(surfinginfo)
+        return JsonResponse(eval(surfinginfo_serializer.data["fantasyLeague"]), safe=False)
+
+    elif request.method == 'PUT':
+        selectedTeam = request.data["selectedTeam"]
+        totalTeamScore = request.data["totalScore"]
+
+        fantasyLeague_user = SurfingInfo.objects.filter(
+            ID=u_id).update(fantasyLeague=selectedTeam, totalTeamScore=totalTeamScore)
+
+        return JsonResponse(fantasyLeague_user, safe=False)
+
+
+@api_view(['GET', 'PUT', 'DELETE'])
+def getTopFive(request):
+    try:
+        surfinginfo = SurfingInfo.objects.order_by('-totalTeamScore')[:5]
+    except SurfingInfo.DoesNotExist:
+        return JsonResponse({'message': 'The user surfing info does not exist'}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        surfingInfoList = []
+        surfingInfo = list(surfinginfo)
+        for element in surfinginfo:
+            print(model_to_dict(element))
+            surfingInfoList.append(model_to_dict(element))
+        return JsonResponse(surfingInfoList, safe=False)
+
+    # elif request.method == 'POST':
+    #     serializer = SurfingInfoSerializer(data=request.data)
+    #     if serializer.is_valid(raise_exception=True):
+    #         serializer.save()
+    #     return Response(serializer.data)

@@ -18,6 +18,7 @@ class SurfingInfo(models.Model):
     alerts = models.TextField(blank=True)
     boardSuggestion = models.TextField(blank=True)
     wetSuitSuggestion = models.TextField(blank=True)
+    totalTeamScore = models.TextField(blank=True)
 
 
 class Boardshorts(models.Model):
