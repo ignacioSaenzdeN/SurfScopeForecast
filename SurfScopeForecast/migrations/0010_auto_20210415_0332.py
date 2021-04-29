@@ -14,7 +14,8 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='UserSurfboard',
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
+                ('id', models.AutoField(auto_created=True,
+                                        primary_key=True, serialize=False, verbose_name='ID')),
                 ('weight', models.TextField(default='')),
                 ('height', models.TextField(default='')),
                 ('size', models.TextField(default='')),
@@ -22,7 +23,8 @@ class Migration(migrations.Migration):
                 ('waveSize', models.TextField(default='')),
                 ('imageUrl', models.TextField(default='')),
                 ('productUrl', models.TextField(default='')),
-                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='surfboard', to='SurfScopeForecast.surfinginfo')),
+                ('user', models.ForeignKey(on_delete=django.db.models.deletion.CASCADE,
+                                           related_name='surfboard', to='SurfScopeForecast.surfinginfo')),
             ],
         ),
         migrations.DeleteModel(
