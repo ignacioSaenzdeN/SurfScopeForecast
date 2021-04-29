@@ -12,6 +12,8 @@ from rest_framework.parsers import JSONParser
 from rest_framework import status
 from django.db.models.functions import Concat
 from django.forms.models import model_to_dict
+from django.db.models import IntegerField
+from django.db.models.functions import Cast
 
 
 def home(request):
@@ -223,20 +225,31 @@ def user_fantasyleague(request, u_id):
 @api_view(['GET', 'PUT', 'DELETE'])
 def getTopFive(request):
     try:
-        surfinginfo = SurfingInfo.objects.order_by('-totalTeamScore')[:5]
+        surfinginfo = SurfingInfo.objects.all()
+        #surfinginfo = SurfingInfo.objects.all().order_by("-totalTeamScore")
+        #surfinginfo = SurfingInfo.objects.extra(select={'totalTeamScore': 'CAST(totalTeamScore AS INTEGER)'},order_by=['totalTeamScore'])
+        #surfinginfo = SurfingInfo.objects.annotate(as_float=Cast('totalTeamScore', IntegerField()))
+        # surfinginfo = SurfingInfo.objects.annotate(as_float=Cast(
+        #     'totalTeamScore', FloatField())).order_by("-totalTeamScore")
+
     except SurfingInfo.DoesNotExist:
         return JsonResponse({'message': 'The user surfing info does not exist'}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
+        print(surfinginfo)
         surfingInfoList = []
         surfingInfo = list(surfinginfo)
+        tempElement = {}
         for element in surfinginfo:
-            print(model_to_dict(element))
-            surfingInfoList.append(model_to_dict(element))
-        return JsonResponse(surfingInfoList, safe=False)
-
-    # elif request.method == 'POST':
-    #     serializer = SurfingInfoSerializer(data=request.data)
-    #     if serializer.is_valid(raise_exception=True):
-    #         serializer.save()
-    #     return Response(serializer.data)
+            tempElement = model_to_dict(element)
+            print(tempElement['totalTeamScore'])
+            if tempElement['totalTeamScore'] != '':
+                tempElement['fantasyLeague'] = eval(
+                    tempElement['fantasyLeague'])
+                tempElement['totalTeamScore'] = int(
+                    tempElement['totalTeamScore'])
+                surfingInfoList.append(tempElement)
+        surfingInfoList.sort(
+            key=lambda i: i['totalTeamScore'], reverse=True)
+        print(surfingInfoList)
+        return JsonResponse(surfingInfoList[:5], safe=False)
