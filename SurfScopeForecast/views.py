@@ -14,6 +14,10 @@ from django.db.models.functions import Concat
 from django.forms.models import model_to_dict
 from django.db.models import IntegerField
 from django.db.models.functions import Cast
+from django.views.generic import TemplateView
+from django.views.decorators.cache import never_cache
+
+index = never_cache(TemplateView.as_view(template_name='index.html'))
 
 
 def home(request):
