@@ -247,11 +247,10 @@ def getTopFive(request):
         for element in surfinginfo:
             tempElement = model_to_dict(element)
             print(tempElement['totalTeamScore'])
-            if tempElement['totalTeamScore'] != '':
-                tempElement['fantasyLeague'] = eval(
-                    tempElement['fantasyLeague'])
-                tempElement['totalTeamScore'] = int(
-                    tempElement['totalTeamScore'])
+            if tempElement['totalTeamScore'] != '' and tempElement['totalTeamScore'] !='0':
+            	
+                tempElement['fantasyLeague'] = eval(tempElement['fantasyLeague'])
+                tempElement['totalTeamScore'] = int(tempElement['totalTeamScore'])
                 surfingInfoList.append(tempElement)
         surfingInfoList.sort(
             key=lambda i: i['totalTeamScore'], reverse=True)
