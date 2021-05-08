@@ -24,7 +24,9 @@ SECRET_KEY = 'mc+-wb88b*y06kl534*q+2c$b-tvo*m)rcpf=j-z+5qcw0u9dm'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["*"]
+# ALLOWED_HOSTS = ['ec2-52-24-134-3.us-west-2.compute.amazonaws.com',
+#                  '52.39.201.123', 'surfscopeforecast.com']
+ALLOWED_HOSTS = ['*']
 
 CORS_ORIGIN_ALLOW_ALL = True
 
@@ -147,8 +149,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static-cdn"),
-    os.path.join(BASE_DIR, "build", "static"),
+    os.path.join(BASE_DIR, "build/static"),
 ]
