@@ -2,6 +2,9 @@ from rest_framework import serializers
 from . models import *
 
 
+# All serializers in this file are used to help
+# formatting that is being received or sent
+
 class ReactSerializer(serializers.ModelSerializer):
     class Meta:
         model = Blackbox

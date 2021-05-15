@@ -2,6 +2,9 @@ import requests
 from bs4 import BeautifulSoup
 from fantasyleague.models import FantasyLeague
 
+# get_fantasyleague_json function retrieves both
+# female and male adults in the wsl
+
 
 def get_fantasyleague_json():
     men_url = "https://www.worldsurfleague.com/athletes/tour/mct?year=2021"
@@ -34,12 +37,13 @@ def get_fantasyleague_json():
             surfer_stats_list.append(surfer_stats)
             surfer_stats = {}
     # print(surfer_stats_list)
-    print(len(surfer_stats_list))
     return surfer_stats_list
+
+# updateFantasyLeague updates existing fantasy
+# league teams once a month (check updater.py for more info)
 
 
 def updateFantasyLeague():
-    print("inside updateFantasyLeague")
     surfer_stats_list = get_fantasyleague_json()
     if len(surfer_stats_list) != 0:
         print(surfer_stats_list)

@@ -7,6 +7,9 @@ from posts.models import Post
 from forums.models import Forum
 from SurfScopeForecast.models import SurfingInfo
 
+# ThreadListSerializer helps format the data related
+# to the forum threads
+
 
 class ThreadListSerializer(serializers.ModelSerializer):
     forum = serializers.HyperlinkedRelatedField(
@@ -32,6 +35,8 @@ class ThreadListSerializer(serializers.ModelSerializer):
             'created_at',
             'last_activity'
         )
+
+# ThreadCreateSerializer helps creating new threads
 
 
 class ThreadCreateSerializer(serializers.ModelSerializer):
@@ -92,6 +97,8 @@ class ThreadCreateSerializer(serializers.ModelSerializer):
         thread.save()
         return thread
 
+# ThreadUpdateSerializer helps updating existing threads
+
 
 class ThreadUpdateSerializer(serializers.ModelSerializer):
     name = serializers.CharField(max_length=50, allow_blank=True)
@@ -119,11 +126,16 @@ class ThreadUpdateSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+# ThreadDeleteSerializer helps updating threads
+
 
 class ThreadDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Thread
         fields = '__all__'
+
+# CreatorSerializer helps formatting the data
+# regardin the author of a thread
 
 
 class CreatorSerializer(serializers.ModelSerializer):
@@ -141,6 +153,9 @@ class CreatorSerializer(serializers.ModelSerializer):
             'is_staff'
         ]
 
+# ThreadPostSerializer helps setting the date
+# of new threads
+
 
 class ThreadPostSerializer(serializers.ModelSerializer):
     creator = CreatorSerializer(read_only=True)
@@ -157,6 +172,9 @@ class ThreadPostSerializer(serializers.ModelSerializer):
 
     def get_created_at(self, obj):
         return naturaltime(obj.created_at)
+
+# ThreadDetailSerializer helps retrieving
+# threads metadata
 
 
 class ThreadDetailSerializer(serializers.ModelSerializer):

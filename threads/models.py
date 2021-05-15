@@ -4,6 +4,9 @@ from django.utils.timezone import now
 from SurfScopeForecast.models import SurfingInfo
 from forums.models import Forum
 
+# thread model creates the structure of how a thread
+# would look like
+
 
 class Thread(models.Model):
     """ Model to represent a thread in a forum """

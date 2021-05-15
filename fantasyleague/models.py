@@ -1,5 +1,8 @@
 from django.db import models
 
+# FantasyLeague model creates the structure of how a FantasyLeague
+# team would look like
+
 
 class FantasyLeague(models.Model):
     rank = models.TextField(default="")

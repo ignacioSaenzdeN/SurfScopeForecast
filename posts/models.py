@@ -3,6 +3,9 @@ from SurfScopeForecast.models import SurfingInfo
 from django.utils.text import Truncator
 from threads.models import Thread
 
+# Post model creates the structure of how a post
+# would look like
+
 
 class Post(models.Model):
     # Model to represent the post in a thread

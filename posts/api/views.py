@@ -28,6 +28,8 @@ class PostListAPIView(generics.ListAPIView):
     serializer_class = PostListSerializer
     # permission_classes = [IsAdminUser]
 
+# PostCreateAPIView is used when creating posts
+
 
 class PostCreateAPIView(generics.CreateAPIView):
     queryset = Post.objects.all()
@@ -36,11 +38,16 @@ class PostCreateAPIView(generics.CreateAPIView):
     permission_classes = [AllowAny]
     throttle_scope = 'create_post'
 
+# PostDetailAPIView is used when retrieving extra
+# information from posts
+
 
 class PostDetailAPIView(generics.RetrieveAPIView):
     queryset = Post.objects.all()
     serializer_class = PostDetailSerializer
     permission_classes = [AllowAny]
+
+# PostDeleteAPIView is used when deleting posts
 
 
 class PostDeleteAPIView(generics.DestroyAPIView):
@@ -80,11 +87,15 @@ class PostDeleteAPIView(generics.DestroyAPIView):
         # except:
         #     return Response(status=HTTP_400_BAD_REQUEST)
 
+# PostUpdateAPIView is used to update posts
+
 
 class PostUpdateAPIView(generics.UpdateAPIView):
     queryset = Post.objects.all()
     serializer_class = PostUpdateSerializer
     # permission_classes = [IsOwnerOrAdminOrReadOnly]
+
+# QueryPostsApiView is used when querying posts
 
 
 class QueryPostsApiView(APIView):

@@ -10,7 +10,7 @@ from .views import (
     ForumUpdateAPIView,
     QueryForumMetadata,
 )
-
+# urls used for topics related to forums
 urlpatterns = [
     path('', ForumListAPIView.as_view(), name='forum-list'),
     path('create/', ForumCreateAPIView.as_view(), name='forum-create'),

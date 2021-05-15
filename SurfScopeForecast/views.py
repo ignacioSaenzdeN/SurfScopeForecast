@@ -19,25 +19,37 @@ from django.views.decorators.cache import never_cache
 
 index = never_cache(TemplateView.as_view(template_name='index.html'))
 
+# Not used
+
 
 def home(request):
     return HttpResponse('<h1> Include Homepage here </h1>')
+
+# Not used
 
 
 def fantasyLeague(request):
     return HttpResponse('<h1>Include FantasyLeague here </h1>')
 
+# Not used
+
 
 def forum(request):
     return HttpResponse('<h1>Include Forum here </h1>')
+
+# Not used
 
 
 def maps(request):
     return HttpResponse('<h1>Include maps here </h1>')
 
+# Not used
+
 
 def profile(request):
     return HttpResponse('<h1>Include Profile here </h1>')
+
+# Currently not being used
 
 
 class ReactView(APIView):
@@ -55,6 +67,8 @@ class ReactView(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+# SurfingInfoView is currently not being used
 
 
 class SurfingInfoView(APIView):
@@ -94,6 +108,8 @@ class SurfingInfoView(APIView):
     #     print(data)
     #     return JsonResponse(data[0])
 
+# user_surfinginfo is used to retrieve and update surfinginfo models
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def user_surfinginfo(request, u_id):
@@ -120,6 +136,8 @@ def user_surfinginfo(request, u_id):
     #         serializer.save()
     #     return Response(serializer.data)
 
+# Surfboards handles the views related to surfboards
+
 
 class Surfboards(APIView):
     serializer_class = SurfboardsSerializer
@@ -136,6 +154,8 @@ class Surfboards(APIView):
 
         return Response("response")
 
+# user_wetsuit_post handles the views used for the wetsuits
+
 
 class user_wetsuit_post(APIView):
     serializer_class = UserWetsuitSerializer
@@ -148,6 +168,9 @@ class user_wetsuit_post(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+# user_wetsuit is used to update and retrieve data
+# related to the wetsuit
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -169,6 +192,8 @@ def user_wetsuit(request, u_id):
             user_id=surfing_info_id).update(size=userwetsuit_data['size'], gender=userwetsuit_data['gender'], waterTemp=userwetsuit_data['waterTemp'], coldSensitivy=userwetsuit_data['coldSensitivy'],  zipperType=userwetsuit_data['zipperType'],  productUrl=userwetsuit_data['productUrl'])
         return JsonResponse(userwetsuit_user, safe=False)
 
+# user_surfboard_post is used to post surfboard data
+
 
 class user_surfboard_post(APIView):
     serializer_class = UserSurfboardSerializer
@@ -181,6 +206,9 @@ class user_surfboard_post(APIView):
         if serializer.is_valid(raise_exception=True):
             serializer.save()
             return Response(serializer.data)
+
+# user_wetsuit is used to update and retrieve data
+# related to the wetsuit
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -202,6 +230,9 @@ def user_surfboard(request, u_id):
         usersurfboard_user = UserSurfboard.objects.filter(
             user_id=surfing_info_id).update(weight=usersurfboard_data['weight'], height=usersurfboard_data['height'], size=usersurfboard_data['size'], level=usersurfboard_data['level'],  waveSize=usersurfboard_data['waveSize'],  productUrl=usersurfboard_data['productUrl'])
         return JsonResponse(usersurfboard_user, safe=False)
+
+# user_fantasyleague is used to handle the gets and
+# puts related to the fantasy league
 
 
 @api_view(['GET', 'PUT', 'DELETE'])
@@ -225,6 +256,8 @@ def user_fantasyleague(request, u_id):
 
         return JsonResponse(fantasyLeague_user, safe=False)
 
+# getTopFive retrieves the top 5 teams in the fantasy league
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def getTopFive(request):
@@ -247,10 +280,12 @@ def getTopFive(request):
         for element in surfinginfo:
             tempElement = model_to_dict(element)
             print(tempElement['totalTeamScore'])
-            if tempElement['totalTeamScore'] != '' and tempElement['totalTeamScore'] !='0':
-            	
-                tempElement['fantasyLeague'] = eval(tempElement['fantasyLeague'])
-                tempElement['totalTeamScore'] = int(tempElement['totalTeamScore'])
+            if tempElement['totalTeamScore'] != '' and tempElement['totalTeamScore'] != '0':
+
+                tempElement['fantasyLeague'] = eval(
+                    tempElement['fantasyLeague'])
+                tempElement['totalTeamScore'] = int(
+                    tempElement['totalTeamScore'])
                 surfingInfoList.append(tempElement)
         surfingInfoList.sort(
             key=lambda i: i['totalTeamScore'], reverse=True)
