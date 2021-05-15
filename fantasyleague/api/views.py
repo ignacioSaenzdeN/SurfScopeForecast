@@ -5,6 +5,9 @@ from rest_framework.decorators import api_view
 from django.http import HttpResponse, JsonResponse
 # from django.core.serializers import serialize
 
+# surfersView is the view that provides the teamm data
+# based on the parameters send in the request
+
 
 @api_view(['GET', 'PUT', 'DELETE'])
 def surfersView(request):

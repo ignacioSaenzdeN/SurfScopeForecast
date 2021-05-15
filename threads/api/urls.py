@@ -11,7 +11,7 @@ from .views import (
     QueryThreadsApiView,
     QueryThreadMetaDataView,
 )
-
+# urls used for topics related to posts
 urlpatterns = [
     path('', ThreadListAPIView.as_view(), name='user-list'),
     path('create/', ThreadCreateAPIView.as_view(), name='thread-create'),

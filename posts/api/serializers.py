@@ -6,6 +6,9 @@ from posts.models import Post
 from threads.models import Thread
 from SurfScopeForecast.models import SurfingInfo
 
+# PostListSerializer serializer helps fomatting the
+# data for spots
+
 
 class PostListSerializer(serializers.ModelSerializer):
     thread = serializers.HyperlinkedRelatedField(
@@ -28,6 +31,8 @@ class PostListSerializer(serializers.ModelSerializer):
             'updated_at',
             'creator'
         )
+
+# PostCreateSerializer is used to create new posts
 
 
 class PostCreateSerializer(serializers.ModelSerializer):
@@ -90,6 +95,8 @@ class PostCreateSerializer(serializers.ModelSerializer):
         thread.save()
         return post
 
+# PostUpdateSerializer is used to update existing threads
+
 
 class PostUpdateSerializer(serializers.ModelSerializer):
     content = serializers.CharField(required=True)
@@ -127,11 +134,16 @@ class PostUpdateSerializer(serializers.ModelSerializer):
         instance.save()
         return instance
 
+# PostDeleteSerializer is used to delete posts
+
 
 class PostDeleteSerializer(serializers.ModelSerializer):
     class Meta:
         model = Post
         fields = '__all__'
+
+# PostDetailSerializer helps retrieving extra data
+# such as creation time
 
 
 class PostDetailSerializer(serializers.ModelSerializer):
@@ -154,6 +166,8 @@ class PostDetailSerializer(serializers.ModelSerializer):
             'updated_at',
             'creator'
         )
+
+# QueryPostsSerializer helps with formatting
 
 
 class QueryPostsSerializer(serializers.ModelSerializer):

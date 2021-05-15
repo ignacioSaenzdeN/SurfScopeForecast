@@ -8,6 +8,8 @@ from forums.models import Forum
 from threads.models import Thread
 from posts.models import Post
 
+# ForumListSerializer helps formatting the forum data
+
 
 class ForumListSerializer(serializers.ModelSerializer):
     posts_count = serializers.SerializerMethodField()
@@ -61,6 +63,8 @@ class ForumListSerializer(serializers.ModelSerializer):
         except:
             return None
 
+# ForumCreateDeleteSerializer is used for deleting forums
+
 
 class ForumCreateDeleteSerializer(serializers.ModelSerializer):
     class Meta:
@@ -73,6 +77,8 @@ class ForumCreateDeleteSerializer(serializers.ModelSerializer):
         read_only_fields = ('slug',)
         lookup_field = 'slug'
 
+# ForumUpdateSerializer is used to update forums
+
 
 class ForumUpdateSerializer(serializers.ModelSerializer):
     class Meta:
@@ -84,6 +90,9 @@ class ForumUpdateSerializer(serializers.ModelSerializer):
         )
         read_only_fields = ('slug', 'name')
         lookup_field = 'slug'
+
+# ForumDetailSerializer helps getting extra information
+# from the forums. Eg: forum metadata
 
 
 class ForumDetailSerializer(serializers.ModelSerializer):

@@ -2,6 +2,9 @@ from django.db import models
 from django.template.defaultfilters import slugify
 # Create your models here.
 
+# Forum model creates the structure of how a forum
+# would look like
+
 
 class Forum(models.Model):
     # Model to represent a forum i.e. General Forum

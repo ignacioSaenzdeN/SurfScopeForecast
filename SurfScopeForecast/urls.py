@@ -6,6 +6,8 @@ from django.conf.urls import url
 from SurfScopeForecast.views import *
 from rest_framework.routers import DefaultRouter
 
+# This urls are used for all the topics related to
+# SurfScopeForecast
 urlpatterns = [
     path('', views.index, name='surfscopeforecast'),
     path('fantasyleague/', views.index, name='SSF-FantasyLeague'),

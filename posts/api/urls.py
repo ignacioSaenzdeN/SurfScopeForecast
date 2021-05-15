@@ -10,7 +10,7 @@ from .views import (
     PostDeleteAPIView,
     QueryPostsApiView
 )
-
+# urls used for topics related to posts
 urlpatterns = [
     path('', PostListAPIView.as_view(), name='post-list'),
     path('create/', PostCreateAPIView.as_view(), name='post-create'),

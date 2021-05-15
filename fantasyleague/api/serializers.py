@@ -1,6 +1,8 @@
 from rest_framework import serializers
 from ..models import *
 
+# FantasyLeagueSerializer helps formatting the data
+
 
 class FantasyLeagueSerializer(serializers.ModelSerializer):
     class Meta:
